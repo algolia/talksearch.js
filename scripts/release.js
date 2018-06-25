@@ -146,9 +146,13 @@ const release = {
       { stdio: 'inherit' }
     );
   },
-  commitToNpm() {
+  publishToNpm() {
     this.shell('npm publish');
-  }
+  },
+  puhsTagsToGit() {
+    this.git('push origin');
+    this.git('push origin --tags');
+  },
 };
 
 (async function() {
@@ -163,31 +167,9 @@ const release = {
     // release.buildFiles();
     release.gitCommitAndTag(newVersion);
     release.publishToNpm();
+    release.pushTagsToGit();
   } catch (err) {
     console.info(err.message);
     process.exit(1); // eslint-disable-line no-process-exit
   }
 })();
-
-//   // publish();
-//   // goBackToDevelop();
-
-
-// function publish() {
-//   log('Pushing new commits to GitHub');
-//   shell.exec('git push origin', { silent: true });
-//   shell.exec('git push origin --tags', { silent: true });
-
-//   log('Publishing new version on NPM');
-//   shell.exec('npm publish');
-// }
-
-// function goBackToDevelop() {
-//   log('Merging back to develop');
-//   shell.exec('git checkout develop && git merge --no-edit master', {
-//     silent: true,
-//   });
-
-//   log('Pushing the merge to GitHub');
-//   shell.exec('git push origin develop', { silent: true });
-// }
