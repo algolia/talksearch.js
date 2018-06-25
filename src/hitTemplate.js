@@ -1,5 +1,5 @@
-/* eslint-disable import/no-commonjs */
-import _ from 'lodash';
+import get from 'lodash.get';
+import compact from 'lodash.compact';
 
 /**
  * Returns the highlighted version of the specified key. Defaults to the actual
@@ -9,7 +9,7 @@ import _ from 'lodash';
  * @returns {String} The highlighted key if possible
  **/
 function highlight(hit, key) {
-  return _.get(hit, `_highlightResult.${key}.value`, _.get(hit, key));
+  return get(hit, `_highlightResult.${key}.value`, get(hit, key));
 }
 
 /**
@@ -30,7 +30,7 @@ function formatNumber(number) {
  * @returns {String} The thumbnail url
  **/
 function getThumbnail(hit) {
-  return _.get(hit, 'video.thumbnails.high.url');
+  return get(hit, 'video.thumbnails.high.url');
 }
 
 /**
@@ -39,7 +39,7 @@ function getThumbnail(hit) {
  * @returns {String} The HTML element
  **/
 function renderViews(hit) {
-  const rawViewCount = _.get(hit, 'video.popularity.views');
+  const rawViewCount = get(hit, 'video.popularity.views');
   const viewCount = formatNumber(rawViewCount);
   return `<div class="ats-hit--views">${viewCount} views</div>`;
 }
@@ -51,7 +51,7 @@ function renderViews(hit) {
  **/
 function renderCaption(hit) {
   // Check that there is a match in the caption
-  const matchType = _.get(
+  const matchType = get(
     hit,
     '_snippetResult.caption.content.matchLevel',
     'none'
@@ -60,7 +60,7 @@ function renderCaption(hit) {
     return '';
   }
 
-  const captionValue = _.get(hit, '_snippetResult.caption.content.value');
+  const captionValue = get(hit, '_snippetResult.caption.content.value');
   const thumbnail = getThumbnail(hit);
 
   return `
@@ -81,14 +81,16 @@ function renderCaption(hit) {
  * @returns {String} The HTML element
  **/
 function renderSpeakers(hit) {
-  const speakers = _.map(_.get(hit, 'speakers', []), 'name');
-  if (_.isEmpty(speakers)) {
+  const speakers = get(hit, 'speakers', []).map(speaker => speaker.name);
+
+  if (speakers.length === 0) {
     return '';
   }
-  const renderedSpeakers = _.map(
-    speakers,
-    speakerName => `<span class="ats-hit--speakerName">${speakerName}</span>`
-  ).join(', ');
+  const renderedSpeakers = speakers
+    .map(
+      speakerName => `<span class="ats-hit--speakerName">${speakerName}</span>`
+    )
+    .join(', ');
   return `<span class="ats-hit--speakers">${renderedSpeakers}</span>`;
 }
 
@@ -98,7 +100,7 @@ function renderSpeakers(hit) {
  * @returns {String} The HTML element
  **/
 function renderConferenceYear(hit) {
-  const conferenceYear = _.get(hit, 'conference.year');
+  const conferenceYear = get(hit, 'conference.year');
   if (!conferenceYear) {
     return '';
   }
@@ -113,13 +115,13 @@ function renderConferenceYear(hit) {
 function renderVideoSubtitle(hit) {
   const speakers = renderSpeakers(hit);
   const conferenceYear = renderConferenceYear(hit);
-  const renderedContent = _.compact([speakers, conferenceYear]).join(' in ');
+  const renderedContent = compact([speakers, conferenceYear]).join(' in ');
   return `<div class="ats-hit--videoSubtitle">${renderedContent}</div>`;
 }
 
 function hitTemplate(item) {
   const thumbnail = getThumbnail(item);
-  const url = _.get(item, 'caption.url');
+  const url = get(item, 'caption.url');
   const title = highlight(item, 'video.title');
   const renderedViews = renderViews(item);
   const renderedCaption = renderCaption(item);

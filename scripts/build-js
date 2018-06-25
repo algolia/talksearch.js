@@ -2,4 +2,4 @@
 
 mkdir -p ./dist
 
-webpack --config ./webpack.prod.build.js
+NODE_ENV=production webpack --config ./webpack.config.js
