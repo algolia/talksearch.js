@@ -146,6 +146,9 @@ const release = {
       { stdio: 'inherit' }
     );
   },
+  commitToNpm() {
+    this.shell('npm publish');
+  }
 };
 
 (async function() {
@@ -159,6 +162,7 @@ const release = {
     await release.updateVersion(newVersion);
     // release.buildFiles();
     release.gitCommitAndTag(newVersion);
+    release.publishToNpm();
   } catch (err) {
     console.info(err.message);
     process.exit(1); // eslint-disable-line no-process-exit
