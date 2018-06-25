@@ -79,6 +79,13 @@ const release = {
     this.git('checkout develop');
     this.git('rebase master');
   },
+  updateMasterFromDevelop() {
+    console.info('Updating master with develop...');
+    this.git('checkout master');
+    this.git('rebase develop');
+    this.git('push');
+    this.git('checkout develop');
+  },
   async askForNewVersion() {
     const currentVersion = packageJson.version;
     const question = `Next version? (current version is ${chalk.green.bold(
@@ -170,6 +177,7 @@ const release = {
     release.gitCommitAndTag(newVersion);
     release.publishToNpm();
     release.pushTagsToGit();
+    release.updateMasterFromDevelop();
   } catch (err) {
     console.info(err.message);
     process.exit(1); // eslint-disable-line no-process-exit
