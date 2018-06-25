@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+yarn run build:js
+yarn run build:css

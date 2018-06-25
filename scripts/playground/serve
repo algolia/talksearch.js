@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+yarn run playground:build
+
+parallelshell \
+  "yarn run playground:build:watch" \
+  "yarn run build:watch"
