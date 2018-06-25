@@ -1,6 +1,6 @@
 {
   "name": "talksearch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Front-end library to display results created by TalkSearch",
   "license": "MIT",
   "browser": "talksearch.min.js",
