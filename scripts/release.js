@@ -34,8 +34,8 @@ const release = {
     return this.git(`log ${pattern} --format=%B`).replace('\n\n', '\n');
   },
   shell(command) {
-    const result = shell.exec(`${command} &>/dev/null`, { silent: true });
-    if (result.stderr) {
+    const result = shell.exec(command, { silent: true });
+    if (result.code !== 0) {
       throw new Error(result.stderr);
     }
     return result.toString().trim();
@@ -147,9 +147,11 @@ const release = {
     );
   },
   publishToNpm() {
+    console.info('Publishing to npm...');
     this.shell('npm publish');
   },
-  puhsTagsToGit() {
+  pushTagsToGit() {
+    console.info('Pushing tags to GitHub...');
     this.git('push origin');
     this.git('push origin --tags');
   },
@@ -161,10 +163,10 @@ const release = {
     release.assertRunWithNpm();
     release.assertRunOnDevelop();
 
-    // release.updateDevelopFromMaster();
+    release.updateDevelopFromMaster();
     const newVersion = await release.askForNewVersion();
     await release.updateVersion(newVersion);
-    // release.buildFiles();
+    release.buildFiles();
     release.gitCommitAndTag(newVersion);
     release.publishToNpm();
     release.pushTagsToGit();
