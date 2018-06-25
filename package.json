@@ -6,7 +6,7 @@
   "license": "MIT",
   "browser": "talksearch.min.js",
   "files": [
-    "./dist/*"
+    "dist"
   ],
   "scripts": {
     "build": "./scripts/build",
