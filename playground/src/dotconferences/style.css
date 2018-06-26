@@ -7,21 +7,46 @@ body {
   @apply .bg-gray;
 }
 
+/* Magnifier glass in the searchbar */
 .ais-search-box--magnifier {
   @apply .text-yellow;
 }
 
-.ais-menu--item:hover, .ais-menu--item__active {
-  @apply .bg-gray text-yellow;
-}
-.ais-menu--count {
-  @apply .hidden;
+
+
+/* Reducing text size so menu can fit in one line */
+.ais-menu--list {
+  @apply text-1;
 }
 
-.ats-hit--details .ats-highlight {
+/* Years/Conference menu hover/active */
+.ais-menu--item:hover,
+.ais-menu--item__active {
+  @apply .bg-gray text-yellow;
+}
+/* Menu counts */
+.ais-menu--item:hover .ais-menu--count, 
+.ais-menu--item__active .ais-menu--count {
+  @apply text-gray;
+}
+
+
+/* Main highlight */
+.ats-hit--details em {
   @apply .border-gray;
 }
 
-.ais-pagination--link:hover {
-  @apply .bg-gray .text-yellow;
+/* Caption highlight */
+.ats-hit--caption em {
+  @apply .text-yellow;
+}
+
+/* Pagination active/hover */
+.ais-pagination--item:hover, 
+.ais-pagination--item__active {
+  @apply .bg-gray;
+}
+.ais-pagination--item:hover .ais-pagination--link, 
+.ais-pagination--item__active .ais-pagination--link {
+  @apply text-yellow;
 }

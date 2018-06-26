@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-webpack --config ./webpack.dev.watch.js
+NODE_ENV=development webpack --config ./webpack.config.js

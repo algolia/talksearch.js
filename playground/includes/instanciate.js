@@ -6,8 +6,5 @@ const search = instantsearch({
   searchParameters: {
     hitsPerPage: 21,
     facetingAfterDistinct: true,
-    highlightPreTag: '<span class="ats-highlight">',
-    highlightPostTag: '</span>',
-    attributesToSnippet: ['caption.content:8'],
   },
 });

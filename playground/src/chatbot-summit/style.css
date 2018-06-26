@@ -4,11 +4,11 @@
 }
 
 /* Main highlight */
-.ats-hit--details .ats-highlight {
+.ats-hit--details em {
   @apply .border-pink text-pink;
 }
 /* Caption highlight */
-.ats-hit--caption .ats-highlight {
+.ats-hit--caption em {
   @apply .text-pink;
 }
 

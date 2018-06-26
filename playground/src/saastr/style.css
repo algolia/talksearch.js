@@ -1,18 +1,19 @@
 /* stylelint-disable at-rule-no-unknown */
-.header {
-  @apply .bg-blue;
-}
-
 body {
   @apply .montserrat;
 }
 
+.header {
+  @apply .bg-blue;
+}
+
+
 /* Main highlight */
-.ats-hit--details .ats-highlight {
+.ats-hit--details em {
   @apply .border-blue text-blue;
 }
 /* Caption highlight */
-.ats-hit--caption .ats-highlight {
+.ats-hit--caption em {
   @apply .text-blue;
 }
 

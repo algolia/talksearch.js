@@ -57,7 +57,8 @@
   @apply .px-1x;
 }
 /* Highlights in the matched caption */
-.ats-hit--caption .ats-highlight {
+.ats-hit--caption em {
+  @apply .roman;
   @apply .text-yellow;
 }
 
@@ -66,7 +67,8 @@
   @apply .flex-auto;
 }
 /* Highlight */
-.ats-hit--details .ats-highlight {
+.ats-hit--details em {
+  @apply .roman;
   @apply .border-b .border-gray;
 }
 .ats-hit--videoTitle {

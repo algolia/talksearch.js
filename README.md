@@ -34,10 +34,10 @@ a default styling.
 
 ```html
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.css">
-  <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/algolia/talksearch.js/dist/talksearch.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/talksearch@0.0.8/dist/talksearch.min.css">
 
   <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0"></script>
-  <script src="https://raw.githubusercontent.com/algolia/talksearch.js/master/dist/talksearch.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/talksearch@0.0.8/dist/talksearch.min.js"></script>
 ```
 
 _Note that we also have a React InstantSearch, Vue InstantSearch and Angular

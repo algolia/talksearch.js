@@ -8,11 +8,11 @@ body {
 }
 
 /* Main highlight */
-.ats-hit--details .ats-highlight {
- @apply .border-blue text-blue;
+.ats-hit--details em {
+  @apply .border-blue text-blue;
 }
 /* Caption highlight */
-.ats-hit--caption .ats-highlight {
+.ats-hit--caption em {
   @apply .text-blue;
 }
 

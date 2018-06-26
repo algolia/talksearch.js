@@ -25,7 +25,11 @@ function run() {
     .use(createIndex());
 
   pipeline.build(err => {
-    console.info(err);
+    if (!err) {
+      console.info('Metalsmith website built');
+    } else {
+      console.info(err);
+    }
   });
 }
 

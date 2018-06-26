@@ -379,7 +379,8 @@
 
 /* Highlights in the matched caption */
 
-.ats-hit--caption .ats-highlight {
+.ats-hit--caption em {
+  font-style: normal;
   color: #ffed4a;
 }
 
@@ -391,7 +392,8 @@
 
 /* Highlight */
 
-.ats-hit--details .ats-highlight {
+.ats-hit--details em {
+  font-style: normal;
   border-bottom-width: 1px;
   border-color: #777;
 }
