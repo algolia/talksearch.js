@@ -40,10 +40,10 @@ a default styling.
   <script src="https://cdn.jsdelivr.net/npm/talksearch@0.0.8/dist/talksearch.min.js"></script>
 ```
 
-_Note that we also have a React InstantSearch, Vue InstantSearch and Angular
-InstantSearch if you're using one of those frameworks. The following example
-will assume you're using the regular InstantSearch.js, but the exact same
-concept will apply to any of those three libraries._
+_Note that we also have a [React InstantSearch][1], [Vue InstantSearch][2] and
+[Angular InstantSearch][3] if you're using one of those frameworks. The
+following example will assume you're using the regular [InstantSearch.js][4],
+but the exact same concept will apply to any of those three libraries._
 
 ## Initialize the search
 
@@ -69,7 +69,7 @@ elements. The library will then replace each `div` with the corresponding
 widget, and all widgets will be updated in real time whenever a search is made.
 
 The bare minimum widgets you'll need are a searchbar (to input keywords) and
-a place to display the results. 
+a place to display the results.
 
 ```html
 <!-- You can put those two placeholders wherever you want in your page -->
@@ -104,13 +104,7 @@ search.start();
 
 This will give you a working search in your videos.
 
-## More widgets and customization
-
-Refer to InstantSearch.js documentation.
-
-
-
-# Custom template
+## Custom template
 
 If you want to use another template than the one provided with TalkSearch.js to
 display your results, then you don't really _need_ TalkSearch.js.
@@ -118,11 +112,73 @@ display your results, then you don't really _need_ TalkSearch.js.
 TalkSearch.js is just one example of how you could display your results.
 Remember that underneath, we're using the `hits` widget of InstantSearch.js. If
 you want to tweak the rendering, you can directly use this widget and build any
-markup you want. 
+markup you want.
 
 You don't have to use TalkSearch.js to enjoy the benefits of your TalkSearch
 index. Feel free to poke at the source code and see how we built our template,
 borrow ideas and code, and roll your own :)
+
+## More widgets and customization
+
+Because TalkSearch.js is only a layer on top of InstantSearch.js, you can use
+any widget from InstantSearch.js. Here are a few examples of widgets you could
+use.
+
+### Pagination
+
+If you have more than one page of results, you can use the pagination widget to
+allow your users to navigate all the pages.
+
+```html
+<div id="pagination"></div>
+
+<script>
+search.addWidget(
+  instantsearch.widgets.pagination({
+    container: '#pagination',
+    maxPages: 20,
+    scrollTo: false,
+    showFirstLast: false,
+  })
+);
+```
+
+Check the [pagination widget documentation][5] for more information about the
+parameters and styling options.
+
+### Menu
+
+If you have had several conferences along the years, you can use the menu widget
+to allow your users to filter by year.
+
+```html
+<div id="years"></div>
+
+<script>
+// When using the menu widget, you should pass facetingAfterDistinct to true
+when instanciating instantsearch, otherwise the count displayed next to each
+item of the menu will not be correct
+const search = instantsearch({
+  ...
+  searchParameters: {
+    facetingAfterDistinct: true,
+  },
+});
+
+search.addWidget(
+  instantsearch.widgets.menu({
+    container: '#years',
+    attributeName: 'conference.year',
+    sortBy: ['name:desc'],
+  })
+);
+</script>
+```
+
+The current available keys for a menu are `conference.year`, `speakers.name`
+
+Check the [menu widget documentation][6] page for complete information about the
+available parameters and styling options.
 
 # Why TalkSearch?
 
@@ -141,90 +197,9 @@ search into what the speakers are actually _saying_ and jump right to the
 matching moment in the video.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-![TalkSearch][1]
-
-> This is part of the [TalkSearch][2]
-> project by [Algolia][3]
-
-[Website][4] |
-[**embed**][5] |
-[scraper][6] |
-[landing page source][7]
-
-This here is the code that you'll use to show a TalkSearch implementation on
-your site.
-
-## Installation
-
-## Usage
-
-## Playground
-
-This project comes with a playground to generate demos for indexes. You can run
-the playground by typing `yarn run playground:serve` and opening
-http://localhost:3000/.
-
-The playground is used by developers to check that `talksearch.js` can work in
-a variety of scenarios, and also to showcase an example of what can be done with
-the data.
-
-### Creating a new demo
-
-To add a new demo to the playground, you'll need to create a new directory in
-`./playground/src`. This directory should contain the following files:
-- `index.pug` will contain all the required metadata for the page (conference
-  name, url, appId and apiKey)
-- `search.js` will contain the actual instantsearch code for this specific demo.
-  It can accept custom `// include: hits.js` strings to include some of the most
-  used widgets.
-- `style.css` will contain any custom styling you need to apply to the page.
-  This will be processed as part of the postcss build, so you can use tailwind
-  `@apply` directive.
-- `tailwind.config.js` will contain config you need to pass to
-  tailwind. This is where you define/overwrite colors.
-- `logo.*` and `logo-small.*` are images used for displaying the logo in the
-  header on various screen size. They can be of any extensions (`svg` or `png`
-  are recommended, though).
-- `fonts` should contain any additional font you need to use. CSS class names
-  will automatically be added for fonts there.
-
-
-[1]: assets/img/logo-talksearch-line@2x.png
-[2]: https://community.algolia.com/talksearch
-[3]: https://algolia.com
-[4]: https://community.algolia.com/talksearch
-[5]: https://github.com/algolia/talksearch-embed
-[6]: https://github.com/algolia/talksearch-scraper
-[7]: https://github.com/algolia/talksearch
+[1]: https://community.algolia.com/react-instantsearch/
+[2]: https://community.algolia.com/vue-instantsearch/
+[3]: https://community.algolia.com/angular-instantsearch/
+[4]: https://community.algolia.com/instantsearch.js/
+[5]: https://community.algolia.com/instantsearch.js/v2/widgets/pagination.html
+[6]: https://community.algolia.com/instantsearch.js/v2/widgets/menu.html
