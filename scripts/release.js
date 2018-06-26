@@ -40,6 +40,7 @@ const release = {
     }
     return result.toString().trim();
   },
+  // Make sure the command is run with npm run and not yarn run
   assertRunWithNpm() {
     if (this.isRunWithNpm()) {
       return;
@@ -51,6 +52,7 @@ const release = {
     const message = [chalk.red(errorTitle), errorDescription].join('\n');
     throw new Error(message);
   },
+  // Making sure the command is run from the develop branch
   assertRunOnDevelop() {
     const currentBranch = this.gitCurrentBranch();
     if (currentBranch !== 'develop') {
@@ -72,6 +74,7 @@ const release = {
       throw new Error(message);
     }
   },
+  // Update current develop with all the changes from master
   updateDevelopFromMaster() {
     console.info('Updating develop with master...');
     this.git('checkout master');
@@ -79,6 +82,7 @@ const release = {
     this.git('checkout develop');
     this.git('rebase master');
   },
+  // Update the master branch with the new release and go back to develop
   updateMasterFromDevelop() {
     console.info('Updating master with develop...');
     this.git('checkout master');
@@ -86,6 +90,7 @@ const release = {
     this.git('push');
     this.git('checkout develop');
   },
+  // Open a prompt to ask for the new version number
   async askForNewVersion() {
     const currentVersion = packageJson.version;
     const question = `Next version? (current version is ${chalk.green.bold(
@@ -115,6 +120,7 @@ const release = {
     const result = await promptGet([promptConfig]);
     return result.question;
   },
+  // Update the version number in all files
   async updateVersion(newVersion) {
     console.info('Updating version in package.json...');
     try {
@@ -124,6 +130,7 @@ const release = {
       throw new Error(message);
     }
   },
+  // Build the final files to distribute on the CDN
   buildFiles() {
     console.info('Building JavaScript files...');
     this.shell('npm run build:js');
@@ -131,6 +138,7 @@ const release = {
     console.info('Building CSS files...');
     this.shell('npm run build:css');
   },
+  // Commit the new files and create a tag on this commit
   gitCommitAndTag(newVersion) {
     // Commit changes
     console.info('Commiting changes...');
@@ -153,6 +161,7 @@ const release = {
       { stdio: 'inherit' }
     );
   },
+  // Publish the built files to NPM
   async publishToNpm() {
     console.info('Publishing to npm...');
     const oneTimePass = await this.askForOneTimePass();
@@ -172,6 +181,7 @@ const release = {
     const result = await promptGet([promptConfig]);
     return result.question;
   },
+  // Push all tags to git
   pushTagsToGit() {
     console.info('Pushing tags to GitHub...');
     this.git('push origin');
@@ -194,6 +204,7 @@ const release = {
     release.pushTagsToGit();
     release.updateMasterFromDevelop();
   } catch (err) {
+    console.info(chalk.red('✘ ERROR:'));
     console.info(err.message);
     process.exit(1); // eslint-disable-line no-process-exit
   }
