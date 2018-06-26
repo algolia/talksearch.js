@@ -56,6 +56,7 @@ const search = instantsearch({
   appId: '8J7GPSC0XN',
   apiKey: '{{PROVIDED_BY_ALGOLIA}}',
   indexName: '{{PROVIDED_BY_ALGOLIA}}'
+  poweredBy: true
 });
 
 search.start();
@@ -156,8 +157,8 @@ to allow your users to filter by year.
 
 <script>
 // When using the menu widget, you should pass facetingAfterDistinct to true
-when instanciating instantsearch, otherwise the count displayed next to each
-item of the menu will not be correct
+// when instanciating instantsearch, otherwise the count displayed next to each
+// item of the menu will not be correct
 const search = instantsearch({
   ...
   searchParameters: {
