@@ -153,9 +153,24 @@ const release = {
       { stdio: 'inherit' }
     );
   },
-  publishToNpm() {
+  async publishToNpm() {
     console.info('Publishing to npm...');
-    this.shell('npm publish');
+    const oneTimePass = await this.askForOneTimePass();
+    this.shell(`npm publish --otp=${oneTimePass}`);
+  },
+  async askForOneTimePass() {
+    const question = `Enter your 2FA code`;
+    const promptConfig = {
+      required: true,
+      description: question,
+    };
+
+    prompt.message = chalk.yellow('?');
+    prompt.colors = false;
+    prompt.start();
+
+    const result = await promptGet([promptConfig]);
+    return result.question;
   },
   pushTagsToGit() {
     console.info('Pushing tags to GitHub...');
