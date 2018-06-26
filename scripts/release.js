@@ -200,7 +200,7 @@ const release = {
     await release.updateVersion(newVersion);
     release.buildFiles();
     release.gitCommitAndTag(newVersion);
-    release.publishToNpm();
+    await release.publishToNpm();
     release.pushTagsToGit();
     release.updateMasterFromDevelop();
   } catch (err) {
