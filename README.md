@@ -55,7 +55,7 @@ don't hesitate to contact community@algolia.com
 const search = instantsearch({
   appId: '8J7GPSC0XN',
   apiKey: '{{PROVIDED_BY_ALGOLIA}}',
-  indexName: '{{PROVIDED_BY_ALGOLIA}}'
+  indexName: '{{PROVIDED_BY_ALGOLIA}}',
   poweredBy: true
 });
 
