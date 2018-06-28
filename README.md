@@ -7,3 +7,5 @@ It should be used in conjunction with InstantSearch.js and provides a default
 template to display your results.
 
 You can find more details in the [official documentation][1].
+
+[1]: https://community.algolia.com/talksearch/talksearch-js.html
