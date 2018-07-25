@@ -22,6 +22,9 @@ function formatNumber(number) {
   if (number > 1000000) {
     return `${floor(number / 1000000, 2)}m`;
   }
+  if (number > 10000) {
+    return `${floor(number / 1000)}k`;
+  }
   if (number > 1000) {
     return `${floor(number / 1000, 2)}k`;
   }

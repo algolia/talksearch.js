@@ -34,29 +34,48 @@ describe('hitTemplate', () => {
   });
 
   describe('formatNumber', () => {
-    it('should return the exact number if less than 1000', () => {
-      const input = 123;
+    it('876 => 876', () => {
+      const input = 876;
 
       const actual = module.internals.formatNumber(input);
 
-      expect(actual).toEqual('123');
+      expect(actual).toEqual('876');
     });
 
-    it('should return a rounded k-suffixed number if more than 1.000', () => {
-      const input = 1230;
+    describe('k number', () => {
+      it('1234 => 1.23k', () => {
+        const input = 1234;
 
-      const actual = module.internals.formatNumber(input);
+        const actual = module.internals.formatNumber(input);
 
-      expect(actual).toEqual('1.23k');
+        expect(actual).toEqual('1.23k');
+      });
+      it('41.527 => 41k', () => {
+        const input = 41527;
+
+        const actual = module.internals.formatNumber(input);
+
+        expect(actual).toEqual('41k');
+      });
+      it('741.527 => 741k', () => {
+        const input = 741527;
+
+        const actual = module.internals.formatNumber(input);
+
+        expect(actual).toEqual('741k');
+      });
     });
 
-    it('should return a rounded m-suffixed number if more than 1.000.000', () => {
-      const input = 1230000;
+    describe('m number', () => {
+      it('1.234.567 => 1.23m', () => {
+        const input = 1234567;
 
-      const actual = module.internals.formatNumber(input);
+        const actual = module.internals.formatNumber(input);
 
-      expect(actual).toEqual('1.23m');
+        expect(actual).toEqual('1.23m');
+      });
     });
+
   });
 
   describe('renderViews', () => {
