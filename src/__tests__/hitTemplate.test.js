@@ -1,6 +1,6 @@
 /* eslint-disable import/no-commonjs */
-import module from './hitTemplate.js';
-import helper from './test-helper.js';
+import module from '../hitTemplate.js';
+import helper from '../test-helper.js';
 
 describe('hitTemplate', () => {
   describe('highlight', () => {
@@ -42,12 +42,20 @@ describe('hitTemplate', () => {
       expect(actual).toEqual('123');
     });
 
-    it('should return a rounded k-suffixed number if more than 1000', () => {
+    it('should return a rounded k-suffixed number if more than 1.000', () => {
       const input = 1230;
 
       const actual = module.internals.formatNumber(input);
 
-      expect(actual).toEqual('1k');
+      expect(actual).toEqual('1.23k');
+    });
+
+    it('should return a rounded m-suffixed number if more than 1.000.000', () => {
+      const input = 1230000;
+
+      const actual = module.internals.formatNumber(input);
+
+      expect(actual).toEqual('1.23m');
     });
   });
 

@@ -1,4 +1,5 @@
 import get from 'lodash.get';
+import floor from 'lodash.floor';
 import compact from 'lodash.compact';
 
 /**
@@ -18,10 +19,13 @@ function highlight(hit, key) {
  * @returns {String} The formatted number
  **/
 function formatNumber(number) {
-  if (number < 1000) {
-    return `${number}`;
+  if (number > 1000000) {
+    return `${floor(number / 1000000, 2)}m`;
   }
-  return `${Math.floor(number / 1000)}k`;
+  if (number > 1000) {
+    return `${floor(number / 1000, 2)}k`;
+  }
+  return `${number}`;
 }
 
 /**

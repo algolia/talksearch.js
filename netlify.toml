@@ -1,3 +1,0 @@
-[build]
-  command = "yarn run playground:build"
-  publish = "./playground/dist"
