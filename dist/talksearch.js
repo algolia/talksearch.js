@@ -1502,6 +1502,9 @@ function formatNumber(number) {
   if (number > 1000000) {
     return `${(0, _lodash4.default)(number / 1000000, 2)}m`;
   }
+  if (number > 10000) {
+    return `${(0, _lodash4.default)(number / 1000)}k`;
+  }
   if (number > 1000) {
     return `${(0, _lodash4.default)(number / 1000, 2)}k`;
   }
