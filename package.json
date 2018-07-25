@@ -1,6 +1,6 @@
 {
   "name": "talksearch",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Front-end library to display results created by TalkSearch",
   "repository": "https://github.com/algolia/talksearch.js",
   "license": "MIT",
