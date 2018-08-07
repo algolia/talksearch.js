@@ -1,11 +1,11 @@
 /* eslint-disable import/no-commonjs */
 import hitTemplate from './hitTemplate';
+import poweredByTemplate from './poweredByTemplate';
 
 const TalkSearch = {
-  templates: {
-    hits: {
-      item: hitTemplate,
-    },
+  hit: hitTemplate.render,
+  poweredBy: {
+    template: poweredByTemplate.render(),
   },
 };
 

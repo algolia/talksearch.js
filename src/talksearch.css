@@ -1,5 +1,5 @@
 /* stylelint-disable at-rule-no-unknown */
-@tailwind preflight; 
+@tailwind preflight;
 @tailwind utilities;
 
 /* Wrapper of all hits */
@@ -10,7 +10,7 @@
 /* Each hit */
 .ais-hits--item {
   @apply .flex-none;
-  @apply .w-100
+  @apply .w-100;
 }
 @screen sm {
   .ais-hits--item {
@@ -23,14 +23,13 @@
   }
 }
 
-
 /* Inside one hit */
 .ats-hit--root {
   @apply .flex .flex-col .flex-no-wrap;
   @apply .px-1 .pb-1x;
 }
 /* The thumbnail, added as a background image */
-.ats-hit--thumbnail  {
+.ats-hit--thumbnail {
   @apply .flex-none;
   @apply .bg-no-repeat .bg-cover .bg-center;
   @apply .h-5;
@@ -40,7 +39,7 @@
 .ats-hit--captionBackdrop {
   @apply .absolute .pin-b .pin-x;
   @apply .overflow-hidden;
-  @apply .h-2x
+  @apply .h-2x;
 }
 /* The blured element, using the same thumnail as the video as background */
 .ats-hit--captionBlur {
@@ -89,4 +88,19 @@
   @apply .text--1 .text-white .bg-black-75;
 }
 
+/* Powered by */
+.ats-poweredBy {
+  @apply block text-right p-0x;
 
+}
+.ats-poweredBy--link {
+  /* Hide the link content */
+  @apply inline-block overflow-hidden whitespace-no-wrap;
+  text-indent: 101%;
+
+  @apply bg-contain bg-no-repeat;
+  background-image: url("./assets/algolia-logo.png");
+
+  @apply align-middle;
+  width: 80px;
+}
